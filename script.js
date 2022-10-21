@@ -232,8 +232,12 @@ let timerInterval;
 
 function nextQuestion(){
     if (questionsArray.length === 0){
-        alert('Congratulations! You have won the game');
-        document.body.innerHTML += '<p id="win-display">There is no more questions left <i class="fa-regular fa-face-surprise"></i> </p>'
+        alert("Congratulations! You have won the game");
+        let winElement = document.createElement("p");
+        clearInterval(timerInterval);
+        winElement.innerHTML = `<p id="winner">There is no more questions left<i class="fa-regular  fa-face-surprise"></i> <i class="fa-lg fa-solid fa-ranking-star"></i></p>`;
+        let gameContainer = document.getElementById("game-container");
+        gameContainer.parentNode.insertBefore(winElement, gameContainer);
         start();
         clearInterval(timerInterval);
     } if (questionsArray.length !== 0){
